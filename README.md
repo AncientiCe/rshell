@@ -1,19 +1,20 @@
 # Rust K9s Wizard
 
 ## Overview
-This Rust CLI tool automates the process of selecting an AWS SSO profile, logging in, and accessing Kubernetes pods using `kubectl exec`. 
+This Rust CLI tool automates the process of selecting an AWS SSO profile, logging in, selecting a Kubernetes context, and automatically accessing Kubernetes pods using `kubectl exec`.
 
 ## Features
-- Fetches available AWS SSO profiles and allows selection.
+- Fetches available AWS SSO profiles and allows interactive selection.
 - Logs into the selected AWS SSO profile using `aws-sso-profile`.
+- Retrieves available Kubernetes contexts and allows interactive selection.
 - Retrieves Kubernetes pod names based on a provided `<pod_name>`.
-- Filters pod names that contain `<pod_name>` (not restricted to specific patterns).
-- Prompts for selection if multiple matching pods exist.
-- Enters the selected pod's shell.
+- Automatically selects the first pod that matches `<pod_name>`.
+- Enters the shell of the selected pod automatically.
 
 ## Prerequisites
 - Rust installed (`cargo` should be available).
 - `aws-sso` CLI installed and configured.
+- `aws-sso-profile` CLI installed and available in the PATH.
 - `kubectl` installed and configured to access your Kubernetes cluster.
 
 ## Installation (Unix/Linux)
@@ -33,10 +34,10 @@ bash install.sh
 ```sh
 rshell <pod_name>
 ```
-- Prompts for AWS profile selection (if multiple exist).
-- Finds pods that contain `<pod_name>` in their name.
-- Prompts for selection if multiple pods exist.
-- Enters the selected pod's shell.
+- Prompts for AWS profile selection.
+- Prompts for Kubernetes context selection.
+- Automatically finds and connects to the first pod containing `<pod_name>`.
+- Directly opens a shell in the selected pod.
 
 ## Uninstallation
 To remove `rshell`, run:
