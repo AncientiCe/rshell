@@ -23,7 +23,7 @@ fn main() {
     let profiles_str = String::from_utf8_lossy(&aws_profiles_output.stdout);
     let profile_names: Vec<&str> = profiles_str
         .lines()
-        .skip(2)
+        .skip(3)
         .filter_map(|line| line.split('|').nth(3).map(|s| s.trim()))
         .collect();
 
