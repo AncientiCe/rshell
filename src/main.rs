@@ -20,21 +20,35 @@ fn main() {
         .output()
         .expect("Failed to get AWS SSO profiles");
     let profiles = String::from_utf8_lossy(&output.stdout);
-    let profile_list: Vec<&str> = profiles.lines().collect();
+    let mut profile_list: Vec<&str> = profiles.lines().collect();
 
-    if profile_list.is_empty() {
+    // Remove header and separator lines
+    if profile_list.len() > 2 {
+        profile_list.drain(0..2);
+    }
+
+    // Extract only the Profile column (4th column)
+    let profile_names: Vec<&str> = profile_list
+        .iter()
+        .filter_map(|line| {
+            let cols: Vec<&str> = line.split('|').map(|s| s.trim()).collect();
+            if cols.len() > 3 { Some(cols[3]) } else { None }
+        })
+        .collect();
+
+    if profile_names.is_empty() {
         eprintln!("No AWS SSO profiles found. Please configure AWS SSO first.");
         return;
     }
 
     let selection = Select::new()
         .with_prompt("Select AWS profile")
-        .items(&profile_list)
+        .items(&profile_names)
         .default(0)
         .interact()
         .expect("Selection failed");
 
-    let selected_profile = profile_list[selection];
+    let selected_profile = profile_names[selection];
     println!("Using profile: {}", selected_profile);
 
     // Step 3: Set AWS Profile using aws-sso-profile and wait for completion
