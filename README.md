@@ -16,22 +16,18 @@ This Rust CLI tool automates the process of selecting an AWS SSO profile, loggin
 - `aws-sso` CLI installed and configured.
 - `kubectl` installed and configured to access your Kubernetes cluster.
 
-## Installation
-1. Clone this repository:
-   ```sh
-   git clone <repository-url>
-   cd rust_k9s_wizard
-   ```
+## Installation (Unix/Linux)
+Run the following to install `rshell` globally:
+```sh
+curl -fsSL https://raw.githubusercontent.com/AncientiCe/rshell/main/install.sh | bash
+```
 
-2. Build the project:
-   ```sh
-   cargo build --release
-   ```
-
-3. Run the tool:
-   ```sh
-   ./target/release/rust_k9s_wizard <pod_name>
-   ```
+Alternatively, clone and install manually:
+```sh
+git clone https://github.com/AncientiCe/rshell.git
+cd rshell
+bash install.sh
+```
 
 ## Usage
 ```sh
@@ -41,6 +37,17 @@ rshell <pod_name>
 - Finds pods that contain `<pod_name>` in their name.
 - Prompts for selection if multiple pods exist.
 - Enters the selected pod's shell.
+
+## Uninstallation
+To remove `rshell`, run:
+```sh
+curl -fsSL https://raw.githubusercontent.com/AncientiCe/rshell/main/uninstall.sh | bash
+```
+
+Or manually:
+```sh
+bash uninstall.sh
+```
 
 ## Testing
 Run tests with:

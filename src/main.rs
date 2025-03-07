@@ -1,6 +1,6 @@
-use std::process::{Command};
 use dialoguer::Select;
 use std::env;
+use std::process::Command;
 
 fn main() {
     // Step 1: AWS SSO Profile Selection
