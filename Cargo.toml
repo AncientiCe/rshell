@@ -1,0 +1,7 @@
+[package]
+name = "rust_k9s_wizard"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+dialoguer = "0.10"
