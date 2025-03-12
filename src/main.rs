@@ -57,9 +57,9 @@ fn main() {
         POD=$(kubectl --context {} get pods -o jsonpath='{{.items[*].metadata.name}}' | tr ' ' '\\n' | grep '{}' | head -n 1) && \
         echo 'Entering shell for pod: '$POD && \
         if kubectl --context {} exec -it $POD -- test -x /bin/bash; then \
-            kubectl --context {} exec -it $POD -- /bin/bash -l; \
+            kubectl --context {} exec -it $POD -- /bin/bash -l -i; \
         else \
-            kubectl --context {} exec -it $POD -- /bin/sh -l; \
+            kubectl --context {} exec -it $POD -- /bin/sh -l -i; \
         fi",
         profile, context, pod_name_filter, context, context, context
     );
