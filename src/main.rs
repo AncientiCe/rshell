@@ -60,8 +60,8 @@ fn main() {
             kubectl --context {} exec -it $POD -- /bin/bash -l; \
         else \
             kubectl --context {} exec -it $POD -- /bin/sh -l; \
-        fi"#,
-        profile, context, pod_name_filter, context
+        fi",
+        profile, context, pod_name_filter, context, context, context
     );
 
     let error = Command::new("zsh")
