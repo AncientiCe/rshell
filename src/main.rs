@@ -56,7 +56,7 @@ fn main() {
         "aws-sso-profile {} && \
         POD=$(kubectl --context {} get pods -o jsonpath='{{.items[*].metadata.name}}' | tr ' ' '\\n' | grep '{}' | head -n 1) && \
         echo 'Entering shell for pod: '$POD && \
-        kubectl --context {} exec -it $POD -- sh",
+        kubectl --context {} exec -it $POD -- /bin/bash -l",
         profile, context, pod_name_filter, context
     );
 

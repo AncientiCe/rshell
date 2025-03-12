@@ -50,11 +50,5 @@ Or manually:
 bash uninstall.sh
 ```
 
-## Testing
-Run tests with:
-```sh
-cargo test
-```
-
 ## License
 MIT
